@@ -7,18 +7,22 @@ import java.io.IOException
 
 class ServerUtil {
 
+    interface JsonResponseHandler{
+        fun onResponse(jsonObj : JSONObject){  //응답이 돌아오면 어떻게 할 거냐. 강의 - 17일 16:50
+
+        }
+    }
+
     companion object {
 
 //        여기에 적는 변수 / 함수는 => JAVA의 static에 대응됨.
 //        클래스이름.기능() 로 활용 가능.
 
-
-//        모든 함수 (기능) 가 공유할 서버 컴퓨터 주소.
-
+        // 모든 함수 (기능) 가 공유할 서버 컴퓨터 주소.
         val HOST_URL = "http://54.180.52.26"
 
         //        로그인 함수 - POST
-        fun postRequestLogIn(email: String, pw: String) {
+        fun postRequestLogIn(email: String, pw: String, handler: JsonResponseHandler?) { // Json 응답 받아서 어떻게 처리할 건지 같이
 
             //  1. 어디로 갈래? URL
             val urlString = "${HOST_URL}/user"
@@ -58,6 +62,10 @@ class ServerUtil {
                     val jsonObj = JSONObject(bodyString)
 
                     Log.d("서버응답", jsonObj.toString())
+
+                    // 나를 호출한 화면에게 JsonObj 처리를 위임하자.
+                    // if(handler!=null){ handler.onResponse(jsonObj) } 이 코드와 같아
+                    handler?.onResponse(jsonObj) // ?가 붙으면 없으면 실행하지 않는다.
                 }
 
             })
