@@ -8,9 +8,7 @@ import java.io.IOException
 class ServerUtil {
 
     interface JsonResponseHandler{
-        fun onResponse(jsonObj : JSONObject){  //응답이 돌아오면 어떻게 할 거냐. 강의 - 17일 16:50
-
-        }
+        fun onResponse(jsonObj : JSONObject)  //응답이 돌아오면 어떻게 할 거냐. 강의 - 17일 16:50
     }
 
     companion object {
@@ -64,7 +62,7 @@ class ServerUtil {
                     Log.d("서버응답", jsonObj.toString())
 
                     // 나를 호출한 화면에게 JsonObj 처리를 위임하자.
-                    // if(handler!=null){ handler.onResponse(jsonObj) } 이 코드와 같아
+                    // 아래 코드는 if(handler!=null){ handler.onResponse(jsonObj) } 이 코드와 같아
                     handler?.onResponse(jsonObj) // ?가 붙으면 없으면 실행하지 않는다.
                 }
 
