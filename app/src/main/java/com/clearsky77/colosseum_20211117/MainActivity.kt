@@ -3,6 +3,7 @@ package com.clearsky77.colosseum_20211117
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.clearsky77.colosseum_20211117.databinding.ActivityMainBinding
+import com.clearsky77.colosseum_20211117.utils.ServerUtil
 
 class MainActivity : BaseActivity() {
 
@@ -21,6 +22,8 @@ class MainActivity : BaseActivity() {
         binding.btnLogin.setOnClickListener {
             val inputEmail = binding.edtEmail.text.toString()
             val inputPw = binding.edtPassword.text.toString()
+
+            ServerUtil.postRequestLogIn(inputEmail, inputPw)
         }
     }
 

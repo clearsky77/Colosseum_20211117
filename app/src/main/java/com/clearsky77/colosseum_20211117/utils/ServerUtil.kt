@@ -1,7 +1,9 @@
 package com.clearsky77.colosseum_20211117.utils
 
-import okhttp3.FormBody
-import okhttp3.Request
+import android.util.Log
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
 
 class ServerUtil {
 
@@ -15,7 +17,7 @@ class ServerUtil {
 
         val HOST_URL = "http://54.180.52.26"
 
-//        로그인 함수 - POST
+        //        로그인 함수 - POST
         fun postRequestLogIn(email: String, pw: String) {
 
             //  1. 어디로 갈래? URL
@@ -32,6 +34,33 @@ class ServerUtil {
                 .url(urlString)
                 .post(formData) // post로 갈거야.
                 .build()
+
+            // 4. 완성된 Request를 실제로 호출 => 클라이언트 역할
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object : Callback {
+            // enqueue 응답이 돌아왔을 때 뭐할지 등록
+            // Callback 답이 돌아왔을 때
+
+                // 실패했을 때
+                override fun onFailure(call: Call, e: IOException) {
+//                    실패 : 물리적 접속 실패.
+//                    보통 토스트 띄우는 것으로 대체함.
+                }
+
+                // 응답이 돌아 왔을 때
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string() // 본문만 String으로 변환.
+                    // bodyString은 JSON 양식으로 가공됨 . => 한글도 임시 변환된 상태 (encoding) 깨짐.
+                    // 강사 서버에서는 body가 null인 경우가 없어서 !!한다.
+
+                    // 일반 String -> JSONObject로 변환  (한글도 원상복구)
+                    val jsonObj = JSONObject(bodyString)
+
+                    Log.d("서버응답", jsonObj.toString())
+                }
+
+            })
 
         }
     }
