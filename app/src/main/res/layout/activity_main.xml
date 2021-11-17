@@ -19,18 +19,19 @@
             android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="n@mail.com"
             android:hint="이메일 양식으로 입력"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="비밀번호"/>
-            android:inputType="textEmailAddress"/>
         <EditText
             android:id="@+id/edtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="비밀번호 입력"
+            android:text="qwe123"
             android:inputType="textPassword"/>
 
         <Button
