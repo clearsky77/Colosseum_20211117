@@ -23,6 +23,7 @@ class MainActivity : BaseActivity() {
             val inputEmail = binding.edtEmail.text.toString()
             val inputPw = binding.edtPassword.text.toString()
 
+            // 로그인 요청. 이메일과 비번이 맞는가?
             ServerUtil.postRequestLogIn(inputEmail, inputPw)
         }
     }
