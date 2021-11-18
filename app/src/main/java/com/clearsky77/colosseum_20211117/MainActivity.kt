@@ -22,23 +22,25 @@ class MainActivity : BaseActivity() {
 
     override fun setValues() {
 //        연습 - 내 정보 API 호출
-        getMyInfoFormServer()
+//        getMyInfoFormServer()
+
+//
     }
 
-    private fun getMyInfoFormServer() {
-        ServerUtil.getRequestMyInfo(mContext, object : ServerUtil.JsonResponseHandler{
-            override fun onResponse(jsonObj: JSONObject) {
-                var dataObj = jsonObj.getJSONObject("data")
-                var userObj = dataObj.getJSONObject("user")
-                var nickname = userObj.getString("nick_name")
-
-                runOnUiThread {
-                    binding.txtUserNickname.text = nickname
-                }
-            }
-
-        })
-    }
+//    private fun getMyInfoFormServer() {
+//        ServerUtil.getRequestMyInfo(mContext, object : ServerUtil.JsonResponseHandler{
+//            override fun onResponse(jsonObj: JSONObject) {
+//                var dataObj = jsonObj.getJSONObject("data")
+//                var userObj = dataObj.getJSONObject("user")
+//                var nickname = userObj.getString("nick_name")
+//
+//                runOnUiThread {
+//                    binding.txtUserNickname.text = nickname
+//                }
+//            }
+//
+//        })
+//    }
 
 
 }
