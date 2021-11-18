@@ -24,7 +24,25 @@ class SignUpActivity : BaseActivity() {
 //        이메일 중복인지 확인
         binding.btnEmailCheck.setOnClickListener {
             val inputEmail = binding.edtEmail.text.toString()
-            ServerUtil.getRequestDuplCheck("EMAIL",inputEmail,null)
+            ServerUtil.getRequestDuplCheck("EMAIL",inputEmail,object : ServerUtil.JsonResponseHandler{
+                override fun onResponse(jsonObj: JSONObject) {
+                    val code = jsonObj.getInt("code")
+
+                    runOnUiThread {
+
+                        if (code == 200) {
+//                        사용해도 좋다
+                            binding.txtEmailCheckResult.text = "사용해도 좋습니다."
+                        }
+                        else {
+//                        사용하면 안됨
+                            binding.txtEmailCheckResult.text = "중복된 이메일입니다. 다른 이메일로 검사해주세요."
+                        }
+
+                    }
+                }
+
+            })
         }
 
 
