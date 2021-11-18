@@ -3,9 +3,10 @@ package com.clearsky77.colosseum_20211117
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.clearsky77.colosseum_20211117.databinding.ActivityLoginBinding
+import com.clearsky77.colosseum_20211117.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity() {
-    lateinit var binding: ActivityLoginBinding
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
