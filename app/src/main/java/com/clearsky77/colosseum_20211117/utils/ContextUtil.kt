@@ -27,5 +27,11 @@ class ContextUtil {
             var pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE) //이 파일 열어줘
             pref.edit().putString(LOGIN_EMAIL, email).apply()
         }
+
+        fun getLoginEmail(context: Context) : String{ // 스트링으로 반환
+            var pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE) //이 파일 열어줘
+            return pref.getString(LOGIN_EMAIL, "")!! // 없으면 ""로 반환
+        }
+
     }
 }

@@ -19,7 +19,6 @@
             android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="n@mail.com"
             android:hint="이메일 양식으로 입력"/>
 
         <TextView

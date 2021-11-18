@@ -57,7 +57,7 @@ class LoginActivity : BaseActivity() {
                                 // 공용 저장소에 저장
                                 ContextUtil.setToken(mContext, token)
                                 // 공용 저장소에 이메일 저장
-                                ContextUtil.setToken(mContext, inputEmail)
+                                ContextUtil.setLoginEmail(mContext, inputEmail)
 
                                 val myIntent = Intent(mContext, MainActivity::class.java)
                                 startActivity(myIntent)
