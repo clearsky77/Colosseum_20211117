@@ -23,10 +23,10 @@ class SignUpActivity : BaseActivity() {
         binding.btnSignUp.setOnClickListener {
             val inputEmail = binding.edtEmail.text.toString()
             val inputPw = binding.edtPassword.text.toString()
-            val inputNickName = binding.edtNickName.text.toString()
+            val inputNickname = binding.edtNickname.text.toString()
 
 // 회원가입 요청.
-            ServerUtil.postRequestSignUp(inputEmail, inputPw, inputNickName, object : ServerUtil.JsonResponseHandler{
+            ServerUtil.postRequestSignUp(inputEmail, inputPw, inputNickname, object : ServerUtil.JsonResponseHandler{
                 override fun onResponse(jsonObj: JSONObject) {
 //                    로그인 API를 호출하고 돌아온 상황
 //                    결과로 jsonObj 하나를 받아서 돌아온 상황

@@ -35,7 +35,7 @@
             android:id="@+id/edtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="비밀번호 입력"
+            android:hint="8자리 이상 입력"
             android:inputType="textPassword"/>
         <TextView
             android:layout_width="wrap_content"
@@ -52,15 +52,15 @@
             android:layout_height="wrap_content"
             android:text="닉네임"/>
         <EditText
-            android:id="@+id/edtNickName"
+            android:id="@+id/edtNickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="특수문자 사용 불가"/>
+            android:hint="자유입력"/>
 
         <Button
             android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="회원가입"/>
+            android:text="가입하기"/>
     </LinearLayout>
 </layout>

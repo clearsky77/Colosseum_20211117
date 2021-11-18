@@ -90,7 +90,7 @@ class ServerUtil {
                 .build()
 
             // 4. 완성된 Request를 실제로 호출 => 클라이언트 역할
-            val client = OkHttpClient()
+            val client = OkHttpClient() // 보내줄 OkHttpClient
 
             client.newCall(request).enqueue(object : Callback {
                 // enqueue 응답이 돌아왔을 때 뭐할지 등록
