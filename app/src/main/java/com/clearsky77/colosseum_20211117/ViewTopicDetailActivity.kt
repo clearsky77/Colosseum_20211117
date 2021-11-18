@@ -27,8 +27,11 @@ class ViewTopicDetailActivity : BaseActivity() {
         mTopicData = intent.getSerializableExtra("topic") as TopicData
         binding.txtTopicTitle.text = mTopicData.title
         Glide.with(mContext).load(mTopicData.imageURL).into(binding.imgTopic)
+
+        getTopicDetailFromServer()
     }
 
+//    토론 진영 목록 / 몇 표 획득
     fun getTopicDetailFromServer(){
 
     }
