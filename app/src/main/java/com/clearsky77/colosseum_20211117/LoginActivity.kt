@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.clearsky77.colosseum_20211117.databinding.ActivityLoginBinding
+import com.clearsky77.colosseum_20211117.utils.ContextUtil
 import com.clearsky77.colosseum_20211117.utils.ServerUtil
 import org.json.JSONObject
 
@@ -47,14 +48,13 @@ class LoginActivity : BaseActivity() {
                             val userObj = dataObj.getJSONObject("user")
                             val nickname = userObj.getString("nick_name")
                             runOnUiThread {
-                                Toast.makeText(mContext, "${nickname}님, 환영합니다.", Toast.LENGTH_SHORT)
-                                    .show()
+                                Toast.makeText(mContext, "${nickname}님, 환영합니다.", Toast.LENGTH_SHORT).show()
 
-                                // 토큰 추출
+                                // 서버에게서 받은 토큰 추출
                                 val token = dataObj.getString("token")
                                 // 공용 저장소에 저장
+                                ContextUtil.setToken(mContext, token)
 
-//
 //                                val myIntent = Intent(mContext, MainActivity::class.java)
 //                                startActivity(myIntent)
 
