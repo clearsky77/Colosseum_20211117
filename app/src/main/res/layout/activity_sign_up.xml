@@ -13,54 +13,71 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:text="회원가입"/>
+            android:text="회원가입"
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="아이디"/>
+            android:text="아이디" />
 
-        <EditText
-            android:id="@+id/edtEmail"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="이메일 양식으로 입력"/>
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="이메일 양식으로 입력" />
+            <Button
+                android:id="@+id/btnEmailCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="중복확인"/>
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="비밀번호"/>
+            android:text="비밀번호" />
+
         <EditText
             android:id="@+id/edtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="8자리 이상 입력"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="비밀번호 확인"/>
+            android:text="비밀번호 확인" />
+
         <EditText
             android:id="@+id/edtPasswordCheck"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="비밀번호 확인"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="닉네임"/>
+            android:text="닉네임" />
+
         <EditText
             android:id="@+id/edtNickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="자유입력"/>
+            android:hint="자유입력" />
 
         <Button
             android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="가입하기"/>
+            android:text="가입하기" />
     </LinearLayout>
 </layout>
