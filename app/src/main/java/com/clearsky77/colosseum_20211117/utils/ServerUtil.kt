@@ -1,5 +1,6 @@
 package com.clearsky77.colosseum_20211117.utils
 
+import android.content.Context
 import android.util.Log
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
@@ -132,7 +133,7 @@ class ServerUtil {
 
         }
 
-        //        중복 확인 함수 - get
+//                중복 확인 함수 - get
         fun getRequestDuplCheck(type: String, value: String, handler: JsonResponseHandler?) {
             // 1. 어디로 + 2. 어떤 파라미터 데이터?
 //            val urlBuilder = HttpUrl.parse("${HOST_URL}/user_check").newBuilder() => 이후 알트 + 엔터
@@ -147,6 +148,42 @@ class ServerUtil {
             val request = Request.Builder()
                 .url(urlString)
                 .get() // put으로 갈거야.
+                .build()
+
+            // 4. 완성된 Request를 실제로 호출 => 클라이언트 역할
+            val client = OkHttpClient() // 보내줄 OkHttpClient
+
+            client.newCall(request).enqueue(object : Callback{
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string() // 본문만 String으로 변환.
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답", jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+                }
+
+            })
+
+        }
+
+
+//      내 정보 가져오기(토큰 첨부) -get
+        fun getRequestMyInfo(context: Context, handler: JsonResponseHandler?) {
+            val urlBuilder =
+                "${HOST_URL}/user_info".toHttpUrlOrNull()!!.newBuilder() // 서버주소, 기능주소 까지만
+            //최종 주소
+            val urlString = urlBuilder.toString()
+
+            Log.d("완성주소",urlString)
+
+            // 3. 어떤 메소드 + 정보 종합 Request 생성
+            val request = Request.Builder()
+                .url(urlString)
+                .get() // put으로 갈거야.
+                .header("X-Http-Token",ContextUtil.getToken(context))
                 .build()
 
             // 4. 완성된 Request를 실제로 호출 => 클라이언트 역할
