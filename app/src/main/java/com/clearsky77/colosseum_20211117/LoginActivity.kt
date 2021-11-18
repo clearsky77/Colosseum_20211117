@@ -47,13 +47,18 @@ class LoginActivity : BaseActivity() {
                             val userObj = dataObj.getJSONObject("user")
                             val nickname = userObj.getString("nick_name")
                             runOnUiThread {
-                                Toast.makeText(mContext, "${nickname}님, 환영합니다.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(mContext, "${nickname}님, 환영합니다.", Toast.LENGTH_SHORT)
+                                    .show()
+//
+//                                val myIntent = Intent(mContext, MainActivity::class.java)
+//                                startActivity(myIntent)
+
+//                                finish() // 로그인 화면은 종료시켜줘야한다.
                             }
+
                         } else {
                             Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
                         }
-//                            Toast.makeText(mContext, code, Toast.LENGTH_SHORT).show()
-
 
                     }
 
