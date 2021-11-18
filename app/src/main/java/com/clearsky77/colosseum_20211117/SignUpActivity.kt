@@ -15,6 +15,14 @@ class SignUpActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+        binding.btnOk.setOnClickListener {
+            val inputEmail = binding.edtEmail.text.toString()
+            val inputPw = binding.edtPassword.text.toString()
+            val inputNickname = binding.edtNickname.text.toString()
+
+            // 서버에 회원가입 전달
+
+        }
     }
 
     override fun setValues() {
