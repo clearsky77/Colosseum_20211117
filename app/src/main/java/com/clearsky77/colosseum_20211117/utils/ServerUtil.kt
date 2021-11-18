@@ -75,7 +75,7 @@ class ServerUtil {
         }
 
         //      회원가입 함수 - PUT
-        fun postRequestSignup(
+        fun putRequestSignup(
             email: String,
             pw: String,
             nickname: String,
