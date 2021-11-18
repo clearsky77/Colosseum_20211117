@@ -2,6 +2,7 @@ package com.clearsky77.colosseum_20211117.utils
 
 import android.util.Log
 import okhttp3.*
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONObject
 import java.io.IOException
 
@@ -19,7 +20,7 @@ class ServerUtil {
         // 모든 함수 (기능) 가 공유할 서버 컴퓨터 주소.
         val HOST_URL = "http://54.180.52.26"
 
-        //        로그인 함수 - POST
+//                로그인 함수 - POST
         fun postRequestLogIn(email: String, pw: String, handler: JsonResponseHandler?) { // Json 응답 받아서 어떻게 처리할 건지 같이
 
             //  1. 어디로 갈래? URL
@@ -70,7 +71,7 @@ class ServerUtil {
 
         }
 
-        // 회원가입 함수 - put
+//         회원가입 함수 - put
         fun postRequestSignUp(email: String, pw: String, nick_name: String, handler: JsonResponseHandler?) { // Json 응답 받아서 어떻게 처리할 건지 같이
 
             //  1. 어디로 갈래? URL
@@ -121,5 +122,19 @@ class ServerUtil {
             })
 
         }
+
+//        중복 확인 함수 - get
+        fun getRequestDuplCheck(type: String, value: String, handler: JsonResponseHandler?){
+            // 1. 어디로 + 2. 어떤 파라미터 데이터?
+//            val urlBuilder = HttpUrl.parse("${HOST_URL}/user_check").newBuilder() => 이후 알트 + 엔터
+            val urlBuilder = "${HOST_URL}/user_check".toHttpUrlOrNull()!!.newBuilder() // 서버주소, 기능주소 까지만
+            urlBuilder.addEncodedQueryParameter("type",type) //Encoded로 해야 한글이 안깨진다.
+                        .addEncodedQueryParameter("value", value)
+            //최종 주소
+            val urlString = urlBuilder.toString()
+
+            // 3. 어떤 메소드 + 정보 종합 Request 생성
+        }
+
     }
 }
