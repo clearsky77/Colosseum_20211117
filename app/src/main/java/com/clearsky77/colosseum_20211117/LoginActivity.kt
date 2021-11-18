@@ -23,6 +23,8 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+//        로그인 버튼 클릭
         binding.btnLogin.setOnClickListener {
             val inputEmail = binding.edtEmail.text.toString()
             val inputPw = binding.edtPassword.text.toString()
@@ -55,14 +57,16 @@ class LoginActivity : BaseActivity() {
                                 // 공용 저장소에 저장
                                 ContextUtil.setToken(mContext, token)
 
-//                                val myIntent = Intent(mContext, MainActivity::class.java)
-//                                startActivity(myIntent)
+                                val myIntent = Intent(mContext, MainActivity::class.java)
+                                startActivity(myIntent)
 
-//                                finish() // 로그인 화면은 종료시켜줘야한다.
+                                finish() // 로그인 화면은 종료시켜줘야한다.
                             }
 
                         } else {
-                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                            runOnUiThread {
+                                Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                            }
                         }
 
                     }
@@ -70,6 +74,7 @@ class LoginActivity : BaseActivity() {
                 })
         }
 
+//        회원가입 버튼 클릭
         binding.btnSignUpLink.setOnClickListener {
             val myIntent = Intent(mContext, SignUpActivity::class.java)
             startActivity(myIntent)
