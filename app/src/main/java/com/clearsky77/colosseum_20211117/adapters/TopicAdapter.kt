@@ -1,6 +1,7 @@
 package com.clearsky77.colosseum_20211117.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +36,8 @@ class TopicAdapter(
 
         txtTopicTitle.text = data.title
         Glide.with(mContext).load(data.imageURL).into(imgTopic)
+
+        Log.d("TopicAdapter에 이미지 주소",data.imageURL)
 
         return row
     }

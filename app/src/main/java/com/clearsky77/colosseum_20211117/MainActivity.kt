@@ -57,6 +57,7 @@ class MainActivity : BaseActivity() {
                     val topicData = TopicData()
                     topicData.id = topicObj.getInt("id")
                     topicData.title = topicObj.getString("title")
+                    topicData.imageURL = topicObj.getString("img_url")
 
                     // mTopicList에 추가
                     mTopicList.add(topicData)
