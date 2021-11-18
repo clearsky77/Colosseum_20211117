@@ -1,8 +1,10 @@
 package com.clearsky77.colosseum_20211117
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
 import com.clearsky77.colosseum_20211117.databinding.ActivityMainBinding
 import com.clearsky77.colosseum_20211117.utils.ServerUtil
@@ -53,6 +55,11 @@ class MainActivity : BaseActivity() {
                 }
 
             })
+        }
+
+        binding.btnSignUpLink.setOnClickListener {
+            val myIntent = Intent(mContext, SignUpActivity::class.java)
+            startActivity(myIntent)
         }
     }
 

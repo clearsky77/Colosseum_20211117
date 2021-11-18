@@ -55,8 +55,7 @@
             android:id="@+id/edtNickName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="특수문자 사용 불가"
-            android:inputType="textPassword"/>
+            android:hint="특수문자 사용 불가"/>
 
         <Button
             android:id="@+id/btnSignUp"

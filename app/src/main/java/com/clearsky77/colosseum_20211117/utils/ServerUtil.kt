@@ -70,6 +70,7 @@ class ServerUtil {
 
         }
 
+        // 회원가입 함수 - put
         fun postRequestSignUp(email: String, pw: String, nick_name: String, handler: JsonResponseHandler?) { // Json 응답 받아서 어떻게 처리할 건지 같이
 
             //  1. 어디로 갈래? URL
