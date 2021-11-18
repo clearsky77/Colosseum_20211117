@@ -24,7 +24,7 @@ class SignUpActivity : BaseActivity() {
 //        이메일 중복인지 확인
         binding.btnEmailCheck.setOnClickListener {
             val inputEmail = binding.edtEmail.text.toString()
-            ServerUtil.getRequestDuplCheck("EMAIL",inputEmail,object : ServerUtil.JsonResponseHandler{
+            ServerUtil.getRequestDuplCheck("EMAIL", inputEmail, object : ServerUtil.JsonResponseHandler{
                 override fun onResponse(jsonObj: JSONObject) {
                     val code = jsonObj.getInt("code")
 
