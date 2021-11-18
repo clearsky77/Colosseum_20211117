@@ -19,7 +19,7 @@ class ServerUtil {
         // 모든 함수 (기능) 가 공유할 서버 컴퓨터 주소.
         val HOST_URL = "http://54.180.52.26"
 
-        //        로그인 함수 - POST
+//      로그인 함수 - POST
         fun postRequestLogIn(email: String, pw: String, handler: JsonResponseHandler?) { // Json 응답 받아서 어떻게 처리할 건지 같이
 
             //  1. 어디로 갈래? URL
@@ -67,6 +67,13 @@ class ServerUtil {
                 }
 
             })
+
+        }
+
+//      회원가입 함수 - PUT
+        fun postRequestSignup(email: String, pw: String, nickname: String, handler: JsonResponseHandler?) { // Json 응답 받아서 어떻게 처리할 건지 같이
+
+
 
         }
     }

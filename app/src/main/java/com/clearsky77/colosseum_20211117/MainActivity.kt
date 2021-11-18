@@ -1,5 +1,6 @@
 package com.clearsky77.colosseum_20211117
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -53,6 +54,11 @@ class MainActivity : BaseActivity() {
                 }
 
             })
+        }
+
+        binding.btnSignUp.setOnClickListener {
+            val myIntent = Intent(this, SignUpActivity::class.java)
+            startActivity(myIntent)
         }
     }
 
