@@ -49,6 +49,11 @@ class LoginActivity : BaseActivity() {
                             runOnUiThread {
                                 Toast.makeText(mContext, "${nickname}님, 환영합니다.", Toast.LENGTH_SHORT)
                                     .show()
+
+                                // 토큰 추출
+                                val token = dataObj.getString("token")
+                                // 공용 저장소에 저장
+
 //
 //                                val myIntent = Intent(mContext, MainActivity::class.java)
 //                                startActivity(myIntent)
