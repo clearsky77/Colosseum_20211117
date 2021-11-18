@@ -205,5 +205,40 @@ class ServerUtil {
 
         }
 
+//      메인 화면 데이터 가져오기(Topic 가져오기) - get
+        fun getRequestMainInfo(context: Context, handler: JsonResponseHandler?) {
+            val urlBuilder =
+                "${HOST_URL}/v2/main_info".toHttpUrlOrNull()!!.newBuilder() // 서버주소, 기능주소 까지만
+            //최종 주소
+            val urlString = urlBuilder.toString()
+
+            Log.d("완성주소",urlString)
+
+            // 3. 어떤 메소드 + 정보 종합 Request 생성
+            val request = Request.Builder()
+                .url(urlString)
+                .get() // put으로 갈거야.
+                .header("X-Http-Token",ContextUtil.getToken(context))
+                .build()
+
+            // 4. 완성된 Request를 실제로 호출 => 클라이언트 역할
+            val client = OkHttpClient() // 보내줄 OkHttpClient
+
+            client.newCall(request).enqueue(object : Callback{
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string() // 본문만 String으로 변환.
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답", jsonObj.toString())
+                    handler?.onResponse(jsonObj)
+                }
+
+            })
+
+        }
+
     }
 }
