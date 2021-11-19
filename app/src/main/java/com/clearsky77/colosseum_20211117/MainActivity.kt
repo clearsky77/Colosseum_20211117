@@ -54,10 +54,7 @@ class MainActivity : BaseActivity() {
                 for (i in 0 until topicsArr.length()) {
                     // 하나의 토론 주제를 표현하는 { } 추출
                     val topicObj = topicsArr.getJSONObject(i)
-                    val topicData = TopicData()
-                    topicData.id = topicObj.getInt("id")
-                    topicData.title = topicObj.getString("title")
-                    topicData.imageURL = topicObj.getString("img_url")
+                    val topicData = TopicData.getTopicDataFromJson(topicObj)
 
                     // mTopicList에 추가
                     mTopicList.add(topicData)

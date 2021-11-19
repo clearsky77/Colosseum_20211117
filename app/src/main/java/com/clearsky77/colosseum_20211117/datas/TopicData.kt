@@ -1,5 +1,6 @@
 package com.clearsky77.colosseum_20211117.datas
 
+import org.json.JSONObject
 import java.io.Serializable
 
 class TopicData : Serializable{
@@ -8,7 +9,15 @@ class TopicData : Serializable{
     var imageURL = ""
 
     companion object{
-        fun getSi
+        fun getTopicDataFromJson(jsonObj:JSONObject) : TopicData{
+            val resultTopicData = TopicData()
+
+            resultTopicData.id = jsonObj.getInt("id")
+            resultTopicData.title = jsonObj.getString("title")
+            resultTopicData.imageURL = jsonObj.getString("img_url")
+
+            return resultTopicData
+        }
     }
 
 }

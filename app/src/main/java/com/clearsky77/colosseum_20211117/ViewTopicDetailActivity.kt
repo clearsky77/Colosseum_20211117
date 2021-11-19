@@ -1,12 +1,12 @@
 package com.clearsky77.colosseum_20211117
 
-import android.content.Context
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.clearsky77.colosseum_20211117.databinding.ActivityViewTopicDetailBinding
 import com.clearsky77.colosseum_20211117.datas.TopicData
 import com.clearsky77.colosseum_20211117.utils.ServerUtil
+import org.json.JSONObject
 
 class ViewTopicDetailActivity : BaseActivity() {
 
@@ -20,6 +20,7 @@ class ViewTopicDetailActivity : BaseActivity() {
         setupEvents()
         setValues()
     }
+
     override fun setupEvents() {
 
     }
@@ -32,9 +33,25 @@ class ViewTopicDetailActivity : BaseActivity() {
         getTopicDetailFromServer()
     }
 
-//    토론 진영 목록 / 몇 표 획득
-    fun getTopicDetailFromServer(){ // 서버에서 가져오는 메소드
+    //    토론 진영 목록 / 몇 표 획득
+    fun getTopicDetailFromServer() { // 서버에서 가져오는 메소드
+        ServerUtil.getRequestTopicDetail( mContext, mTopicData.id, object : ServerUtil.JsonResponseHandler {
+            override fun onResponse(jsonObj: JSONObject) {
+                val dataObj = jsonObj.getJSONObject("data")
+                val topicObj = dataObj.getJSONObject("topic")
 
+                mTopicData = TopicData.getTopicDataFromJson(topicObj)
 
+                runOnUiThread {
+                    refreshUI() // 위의 내용이 변경되었으니 리프레쉬해주세요.
+                }
+            }
+        })
+    }
+
+//    mTopicData가 변경되었으면 UI에 새로 반영해주시오.
+    fun refreshUI(){
+        binding.txtTopicTitle.text = mTopicData.title
+        Glide.with(mContext).load(mTopicData.imageURL).into(binding.imgTopic)
     }
 }
