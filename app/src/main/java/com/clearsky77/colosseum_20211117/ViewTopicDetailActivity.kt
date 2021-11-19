@@ -1,11 +1,12 @@
 package com.clearsky77.colosseum_20211117
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.clearsky77.colosseum_20211117.databinding.ActivityViewTopicDetailBinding
 import com.clearsky77.colosseum_20211117.datas.TopicData
+import com.clearsky77.colosseum_20211117.utils.ServerUtil
 
 class ViewTopicDetailActivity : BaseActivity() {
 
@@ -32,7 +33,8 @@ class ViewTopicDetailActivity : BaseActivity() {
     }
 
 //    토론 진영 목록 / 몇 표 획득
-    fun getTopicDetailFromServer(){
+    fun getTopicDetailFromServer(){ // 서버에서 가져오는 메소드
+
 
     }
 }
