@@ -12,12 +12,14 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="250dp">
+
             <ImageView
                 android:id="@+id/imgTopic"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@mipmap/ic_launcher"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher" />
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -32,11 +34,20 @@
 
                 <TextView
                     android:id="@+id/txtTopicTitle"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="토론 주제 자리" />
+                    android:text="토론 주제 자리"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtReplyCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="현재 댓글 개수: 0개"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -56,9 +67,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Vs."
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
+                        android:text="Vs."
                         android:textColor="@color/white" />
 
                     <TextView
@@ -67,13 +78,12 @@
                         android:layout_height="wrap_content"
                         android:text="둘째 진영"
                         android:textColor="@color/white"
-                        android:textSize="17sp"/>
+                        android:textSize="17sp" />
 
                 </LinearLayout>
 
 
             </LinearLayout>
-
 
 
         </FrameLayout>
