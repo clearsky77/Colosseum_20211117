@@ -52,6 +52,7 @@ class ViewTopicDetailActivity : BaseActivity() {
 //    mTopicData가 변경되었으면 UI에 새로 반영해주시오.
     fun refreshUI(){
         binding.txtTopicTitle.text = mTopicData.title
+        binding.txtReplyCount.text = "댓글: ${mTopicData.replyCount}개"
         Glide.with(mContext).load(mTopicData.imageURL).into(binding.imgTopic)
     }
 }

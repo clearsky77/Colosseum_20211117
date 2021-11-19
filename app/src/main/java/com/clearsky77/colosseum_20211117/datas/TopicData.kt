@@ -8,6 +8,8 @@ class TopicData : Serializable{
     var title = "" // String 자리를 표시하기 위해
     var imageURL = ""
 
+    var replyCount = 0
+
     companion object{
         fun getTopicDataFromJson(jsonObj:JSONObject) : TopicData{
             val resultTopicData = TopicData()
@@ -15,6 +17,8 @@ class TopicData : Serializable{
             resultTopicData.id = jsonObj.getInt("id")
             resultTopicData.title = jsonObj.getString("title")
             resultTopicData.imageURL = jsonObj.getString("img_url")
+
+            resultTopicData.replyCount = jsonObj.getInt("reply_count")
 
             return resultTopicData
         }
