@@ -10,6 +10,8 @@ class TopicData : Serializable{
 
     var replyCount = 0
 
+    var sideList = ArrayList<SideData>()
+
     companion object{
         fun getTopicDataFromJson(jsonObj:JSONObject) : TopicData{
             val resultTopicData = TopicData()
@@ -20,6 +22,12 @@ class TopicData : Serializable{
 
             resultTopicData.replyCount = jsonObj.getInt("reply_count")
 
+            val sidesArr = jsonObj.getJSONArray("sides")
+            for(i in 0 until sidesArr.length()) {
+                val sideObj = sidesArr.getJSONObject(i)
+                val sideData = SideData.getSideDataFromJson(sideObj)
+                resultTopicData.sideList.add(sideData)
+            }
             return resultTopicData
         }
     }
