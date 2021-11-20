@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.clearsky77.colosseum_20211117.databinding.ActivityViewTopicDetailBinding
+import com.clearsky77.colosseum_20211117.datas.ReplyData
 import com.clearsky77.colosseum_20211117.datas.TopicData
 import com.clearsky77.colosseum_20211117.utils.ServerUtil
 import org.json.JSONObject
@@ -57,6 +58,7 @@ class ViewTopicDetailActivity : BaseActivity() {
         }
     }
 
+
     override fun setValues() {
         mTopicData = intent.getSerializableExtra("topic") as TopicData
         binding.txtTopicTitle.text = mTopicData.title
@@ -79,6 +81,7 @@ class ViewTopicDetailActivity : BaseActivity() {
                 }
             }
         })
+
     }
 
 //    mTopicData가 변경되었으면 UI에 새로 반영해주시오.
