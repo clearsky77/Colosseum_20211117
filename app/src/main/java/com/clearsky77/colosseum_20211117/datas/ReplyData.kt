@@ -3,7 +3,7 @@ package com.clearsky77.colosseum_20211117.datas
 import org.json.JSONObject
 import java.io.Serializable
 
-class ReplyData : Serializable{
+class ReplyData{
     var id = 0;
     var content = ""
 
