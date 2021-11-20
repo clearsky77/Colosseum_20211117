@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.clearsky77.colosseum_20211117.R
 import com.clearsky77.colosseum_20211117.datas.ReplyData
+import java.text.SimpleDateFormat
 
 class ReplyAdapter(
     val mContext: Context,
@@ -31,10 +32,13 @@ class ReplyAdapter(
         val txtWriterNickname = row.findViewById<TextView>(R.id.txtWriterNickname)
         val txtSelectedSide = row.findViewById<TextView>(R.id.txtSelectedSide)
         val txtReplyContext = row.findViewById<TextView>(R.id.txtReplyContent)
+        val txtCreatedAt = row.findViewById<TextView>(R.id.txtCreatedAt)
 
         txtWriterNickname.text = data.writer.nickname
         txtSelectedSide.text = "(${data.seletedSide.title})"
         txtReplyContext.text = data.content
+        val sdf = SimpleDateFormat("yyyy/MM/dd a h시 m분") // 재가공 도움을 주는
+        txtCreatedAt.text = sdf.format(data.createdAt)
 
         return row
     }
