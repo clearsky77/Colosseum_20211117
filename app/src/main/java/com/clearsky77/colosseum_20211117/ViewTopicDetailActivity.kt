@@ -1,6 +1,7 @@
 package com.clearsky77.colosseum_20211117
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.clearsky77.colosseum_20211117.databinding.ActivityViewTopicDetailBinding
@@ -25,9 +26,17 @@ class ViewTopicDetailActivity : BaseActivity() {
         binding.btnVote01.setOnClickListener {
             ServerUtil.postRequestVote(mContext, mTopicData.sideList[0].id, object : ServerUtil.JsonResponseHandler{
                 override fun onResponse(jsonObj: JSONObject) {
-
+                    val code = jsonObj.getInt("code")
+                    if(code==200){
+                        // 득표 수를 서버에서 다시 받아오자(새로고침). 그래야 내가 투표한 것도 반영되서 보인다.
+                        getTopicDetailFromServer()
+                    }else{
+                        val message = jsonObj.getString("message")
+                        runOnUiThread {
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
-
             })
         }
     }
@@ -40,7 +49,7 @@ class ViewTopicDetailActivity : BaseActivity() {
         getTopicDetailFromServer()
     }
 
-    //    토론 진영 목록 / 몇 표 획득
+    //    토론 상세정보. 토론 상세정보 새로고침 때도 쓰인다!
     fun getTopicDetailFromServer() { // 서버에서 가져오는 메소드
         ServerUtil.getRequestTopicDetail( mContext, mTopicData.id, object : ServerUtil.JsonResponseHandler {
             override fun onResponse(jsonObj: JSONObject) {
