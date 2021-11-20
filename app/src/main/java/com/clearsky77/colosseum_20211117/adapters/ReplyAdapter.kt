@@ -1,17 +1,13 @@
 package com.clearsky77.colosseum_20211117.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
 import com.clearsky77.colosseum_20211117.R
 import com.clearsky77.colosseum_20211117.datas.ReplyData
-import com.clearsky77.colosseum_20211117.datas.TopicData
 
 class ReplyAdapter(
     val mContext: Context,
@@ -32,8 +28,11 @@ class ReplyAdapter(
 
         val data = mList[position]
 
-        val txtReContext = row.findViewById<TextView>(R.id.txtReplyContent)
-        txtReContext.text = data.content
+        val txtWriterNickname = row.findViewById<TextView>(R.id.txtWriterNickname)
+        val txtReplyContext = row.findViewById<TextView>(R.id.txtReplyContent)
+
+        txtWriterNickname.text = data.writer.nickname
+        txtReplyContext.text = data.content
 
         return row
     }
