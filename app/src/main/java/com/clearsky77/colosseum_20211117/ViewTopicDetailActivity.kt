@@ -22,7 +22,14 @@ class ViewTopicDetailActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+        binding.btnVote01.setOnClickListener {
+            ServerUtil.postRequestVote(mContext, mTopicData.sideList[0].id, object : ServerUtil.JsonResponseHandler{
+                override fun onResponse(jsonObj: JSONObject) {
 
+                }
+
+            })
+        }
     }
 
     override fun setValues() {
