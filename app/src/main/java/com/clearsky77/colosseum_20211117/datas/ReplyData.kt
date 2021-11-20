@@ -6,6 +6,7 @@ class ReplyData{
     var id = 0;
     var content = ""
     var writer = UserData()
+    var seletedSide = SideData()
 
     companion object{
         fun getReplyDataFromJson(jsonObj: JSONObject): ReplyData{
@@ -16,6 +17,9 @@ class ReplyData{
 
             val userObj = jsonObj.getJSONObject("user")
             replyData.writer = UserData.getUserDataFromJson(userObj)
+
+            var sideObj = jsonObj.getJSONObject("selected_side")
+            replyData.seletedSide = SideData.getSideDataFromJson(sideObj)
 
             return replyData
         }
