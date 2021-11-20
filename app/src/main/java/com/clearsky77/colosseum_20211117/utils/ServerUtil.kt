@@ -232,13 +232,14 @@ class ServerUtil {
         }
 
 //      토론 주제별 상세 조회하기 - GET
-        fun getRequestTopicDetail( context: Context, topicId: Int, handler: JsonResponseHandler? ) {
+        fun getRequestTopicDetail( context: Context, topicId: Int, orderType: String, handler: JsonResponseHandler? ) {
 
             val urlBuilder =  "${HOST_URL}/topic".toHttpUrlOrNull()!!.newBuilder()  // 서버주소/기능주소 까지만.
 
 //            주소 양식 : Path - /topic/3  => /3 PathSegment라고 부름.
 //            주소 양식 : Query - /topic?name=냥냐루   QueryParameter 라고 부름.
             urlBuilder.addPathSegment(topicId.toString())
+                .addQueryParameter("order_type",orderType)
 
             val urlString = urlBuilder.toString()
 
@@ -246,7 +247,6 @@ class ServerUtil {
 
 
 //            Request를 만들때 헤더도 같이 첨부.
-
             val request = Request.Builder()
                 .url(urlString)
                 .get()
@@ -255,7 +255,6 @@ class ServerUtil {
 
 
 //            실제 API 호출 - client
-
             val client = OkHttpClient()
             client.newCall(request).enqueue( object : Callback {
                 override fun onFailure(call: Call, e: IOException) {

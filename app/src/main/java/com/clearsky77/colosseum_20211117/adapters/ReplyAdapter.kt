@@ -32,9 +32,9 @@ class ReplyAdapter(
 
         val data = mList[position]
 
-        val imgTopic = row.findViewById<ImageView>(R.id.)
-        val txtTopicTitle = row.findViewById<TextView>(R.id.txtTopicTitle)
-        val txtReplyCount = row.findViewById<TextView>(R.id.txtReplyCount)
+//        val imgTopic = row.findViewById<ImageView>(R.id.)
+//        val txtTopicTitle = row.findViewById<TextView>(R.id.txtTopicTitle)
+//        val txtReplyCount = row.findViewById<TextView>(R.id.txtReplyCount)
 
 
         return row

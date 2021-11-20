@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import com.clearsky77.colosseum_20211117.adapters.ReplyAdapter
 import com.clearsky77.colosseum_20211117.databinding.ActivityViewTopicDetailBinding
 import com.clearsky77.colosseum_20211117.datas.ReplyData
 import com.clearsky77.colosseum_20211117.datas.TopicData
@@ -14,6 +15,8 @@ class ViewTopicDetailActivity : BaseActivity() {
 
     lateinit var binding: ActivityViewTopicDetailBinding
     lateinit var mTopicData: TopicData
+    var mReplyData = ArrayList<ReplyData>()
+    lateinit var mReplyAdapter: ReplyAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,11 +68,14 @@ class ViewTopicDetailActivity : BaseActivity() {
         Glide.with(mContext).load(mTopicData.imageURL).into(binding.imgTopic)
 
         getTopicDetailFromServer()
+
+        mReplyAdapter = ReplyAdapter(mContext, R.layout.reply_list_item, mReplyData)
+        binding.replyListView.adapter = mReplyAdapter
     }
 
     //    토론 상세정보. 토론 상세정보 새로고침 때도 쓰인다!
     fun getTopicDetailFromServer() { // 서버에서 가져오는 메소드
-        ServerUtil.getRequestTopicDetail( mContext, mTopicData.id, object : ServerUtil.JsonResponseHandler {
+        ServerUtil.getRequestTopicDetail( mContext, mTopicData.id, "NEW", object : ServerUtil.JsonResponseHandler {
             override fun onResponse(jsonObj: JSONObject) {
                 val dataObj = jsonObj.getJSONObject("data")
                 val topicObj = dataObj.getJSONObject("topic")
@@ -79,6 +85,17 @@ class ViewTopicDetailActivity : BaseActivity() {
                 runOnUiThread {
                     refreshUI() // 위의 내용이 변경되었으니 리프레쉬해주세요.
                 }
+
+                val repliesArr = topicObj.getJSONArray("replies")
+                for(i in 0 until repliesArr.length()){
+                    mReplyData.add(ReplyData.getReplyDataFromJson( repliesArr.getJSONObject(i) ))
+                }
+
+                // 서버가 더 늦게 끝났다면? 리스트뷰 내용 변경됨.
+                runOnUiThread{
+                    mReplyAdapter.notifyDataSetChanged()
+                }
+
             }
         })
 

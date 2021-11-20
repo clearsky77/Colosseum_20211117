@@ -59,6 +59,7 @@ class MainActivity : BaseActivity() {
                     // mTopicList에 추가
                     mTopicList.add(topicData)
 
+                    // 서버가 더 늦게 끝났다면, 리스트뷰 내용 변경됨
                     runOnUiThread{
                         mTopAdapter.notifyDataSetChanged()
                     }
