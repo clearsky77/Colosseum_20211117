@@ -15,7 +15,7 @@ class ViewTopicDetailActivity : BaseActivity() {
 
     lateinit var binding: ActivityViewTopicDetailBinding
     lateinit var mTopicData: TopicData
-    var mReplyData = ArrayList<ReplyData>()
+    var mReplyList = ArrayList<ReplyData>()
     lateinit var mReplyAdapter: ReplyAdapter
 
 
@@ -69,7 +69,7 @@ class ViewTopicDetailActivity : BaseActivity() {
 
         getTopicDetailFromServer()
 
-        mReplyAdapter = ReplyAdapter(mContext, R.layout.reply_list_item, mReplyData)
+        mReplyAdapter = ReplyAdapter(mContext, R.layout.reply_list_item, mReplyList)
         binding.replyListView.adapter = mReplyAdapter
     }
 
@@ -88,7 +88,9 @@ class ViewTopicDetailActivity : BaseActivity() {
 
                 val repliesArr = topicObj.getJSONArray("replies")
                 for(i in 0 until repliesArr.length()){
-                    mReplyData.add(ReplyData.getReplyDataFromJson( repliesArr.getJSONObject(i) ))
+                    val replyObj = repliesArr.getJSONObject(i)
+                    val replyData = ReplyData.getReplyDataFromJson( replyObj )
+                    mReplyList.add( replyData )
                 }
 
                 // 서버가 더 늦게 끝났다면? 리스트뷰 내용 변경됨.
