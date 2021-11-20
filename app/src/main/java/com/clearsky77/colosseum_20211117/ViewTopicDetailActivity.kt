@@ -39,6 +39,22 @@ class ViewTopicDetailActivity : BaseActivity() {
                 }
             })
         }
+
+        binding.btnVote02.setOnClickListener {
+            ServerUtil.postRequestVote(mContext, mTopicData.sideList[1].id, object : ServerUtil.JsonResponseHandler{
+                override fun onResponse(jsonObj: JSONObject) {
+                    val code = jsonObj.getInt("code")
+                    if(code==200){
+                        getTopicDetailFromServer() // 투표 완료 -> 새로고침. 그래야 내가 투표한 것도 반영되서 보인다.
+                    }else{
+                        val message = jsonObj.getString("message")
+                        runOnUiThread {
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            })
+        }
     }
 
     override fun setValues() {
