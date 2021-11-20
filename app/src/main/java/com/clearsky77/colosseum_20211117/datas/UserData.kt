@@ -8,7 +8,7 @@ class UserData {
     var nickname = ""
 
     companion object{
-        fun getUserDataFromServer(jsonObject: JSONObject) : UserData{
+        fun getUserDataFromJson(jsonObject: JSONObject) : UserData{
             val userData = UserData()
 
             userData.id = jsonObject.getInt("id")
