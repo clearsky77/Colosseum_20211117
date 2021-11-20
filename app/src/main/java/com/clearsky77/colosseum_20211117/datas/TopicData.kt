@@ -22,6 +22,7 @@ class TopicData : Serializable{
 
             resultTopicData.replyCount = jsonObj.getInt("reply_count")
 
+            //for문 돌면서 Side 배열에 있는 내용을 하나씩 추가한다.
             val sidesArr = jsonObj.getJSONArray("sides")
             for(i in 0 until sidesArr.length()) {
                 val sideObj = sidesArr.getJSONObject(i)
