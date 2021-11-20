@@ -2,6 +2,7 @@ package com.clearsky77.colosseum_20211117
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.clearsky77.colosseum_20211117.databinding.ActivityLoginBinding
@@ -23,6 +24,12 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        binding.autoLoginCheckBox.setOnCheckedChangeListener { compoundButton, isChecked ->
+//            Log.d("체크박스 변경", isChecked.toString())
+            ContextUtil.setAutoLogin(mContext, isChecked) // 들어오는 값대로 저장하자
+
+        }
 
 //        로그인 버튼 클릭
         binding.btnLogin.setOnClickListener {
@@ -85,6 +92,8 @@ class LoginActivity : BaseActivity() {
 
     override fun setValues() {
         binding.edtEmail.setText(ContextUtil.getLoginEmail(mContext))
+
+        binding.autoLoginCheckBox.isChecked = ContextUtil.getAutoLogin(mContext)
     }
 
 
