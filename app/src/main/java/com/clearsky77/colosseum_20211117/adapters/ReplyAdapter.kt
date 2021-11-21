@@ -51,6 +51,13 @@ class ReplyAdapter(
         txtLikeCount.text = "좋아요: ${data.likeCount.toString()}개"
         txtDislikeCount.text = "싫어요: ${data.dislikeCount.toString()}개"
 
+        // 내 좋아요 여부에 따른 테두리 색 변경
+        if(data.myLike){
+            txtLikeCount.setBackgroundColor(R.drawable.red_border_box)
+        }else{
+            txtLikeCount.setBackgroundColor(R.drawable.gray_border_box)
+        }
+
         // 각 줄의 좋아요 개수에 이벤트 처리.
         // '좋아요' 처리
         txtLikeCount.setOnClickListener {
