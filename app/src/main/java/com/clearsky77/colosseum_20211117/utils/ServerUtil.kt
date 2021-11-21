@@ -319,5 +319,57 @@ class ServerUtil {
             })
 
         }
+
+//      댓글에 좋아요/실어요 찍기 - POST
+        fun postRequestReplyLikeOrDislike( context: Context, replyId: Int, isLike:Boolean, handler: JsonResponseHandler?) { // X-Http-Token 알려면 context필요
+
+            //  1. 어디로 갈래? URL
+            val urlString = "${HOST_URL}/topic_reply_like"
+
+            // 2. 어떤 데이터를 들고가? (파라미터)
+            val formData = FormBody.Builder()
+                .add("reply_id", replyId.toString())
+                .add("is_like", isLike.toString())
+                .build()
+
+            // 3. 어떤 메쏘드 + 1/2 데이터 결합 => 어떤 요청인지 완성
+            val request = Request.Builder()
+                .url(urlString)
+                .post(formData) // post로 갈거야.
+                .header("X-Http-Token",ContextUtil.getToken(context)) // 헤더는 여기에~~~~~~~~~~!!!!
+                .build()
+
+            // 4. 완성된 Request를 실제로 호출 => 클라이언트 역할
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object : Callback {
+                // enqueue 응답이 돌아왔을 때 뭐할지 등록
+                // Callback 답이 돌아왔을 때
+
+                // 실패했을 때
+                override fun onFailure(call: Call, e: IOException) {
+//                    실패 : 물리적 접속 실패.
+//                    보통 토스트 띄우는 것으로 대체함.
+                }
+
+                // 응답이 돌아 왔을 때
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string() // 본문만 String으로 변환.
+                    // bodyString은 JSON 양식으로 가공됨 . => 한글도 임시 변환된 상태 (encoding) 깨짐.
+                    // 강사 서버에서는 body가 null인 경우가 없어서 !!한다.
+
+                    // 일반 String -> JSONObject로 변환  (한글도 원상복구)
+                    val jsonObj = JSONObject(bodyString)
+
+                    Log.d("서버응답", jsonObj.toString())
+
+                    // 나를 호출한 화면에게 JsonObj 처리를 위임하자.
+                    // 아래 코드는 if(handler!=null){ handler.onResponse(jsonObj) } 이 코드와 같아
+                    handler?.onResponse(jsonObj) // ?가 붙으면 없으면 실행하지 않는다.
+                }
+
+            })
+
+        }
     }
 }

@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.clearsky77.colosseum_20211117.R
 import com.clearsky77.colosseum_20211117.datas.ReplyData
+import com.clearsky77.colosseum_20211117.utils.ServerUtil
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 
 class ReplyAdapter(
@@ -48,17 +50,26 @@ class ReplyAdapter(
         txtLikeCount.text = "좋아요: ${data.likeCount.toString()}개"
         txtDislikeCount.text = "싫어요: ${data.dislikeCount.toString()}개"
 
-        // 각 줄의 좋아요 갯수에 이벤트 처리.
+        // 각 줄의 좋아요 개수에 이벤트 처리.
+        // '좋아요' 처리
         txtLikeCount.setOnClickListener {
-
             // 이 댓글에 좋아요를 남겼다고 -> 서버 API 호출.
+            ServerUtil.postRequestReplyLikeOrDislike(mContext,data.id, true, object : ServerUtil.JsonResponseHandler{
+                override fun onResponse(jsonObj: JSONObject) {
 
+                }
+            })
         }
 
+        // '싫어요' 처리
         txtDislikeCount.setOnClickListener {
-
             // 이 댓글에 싫어요를 남겼다고 -> 서버 API 호출.
+            ServerUtil.postRequestReplyLikeOrDislike(mContext, data.id, false, object : ServerUtil.JsonResponseHandler{
+                override fun onResponse(jsonObj: JSONObject) {
 
+                }
+
+            })
         }
 
         return row
