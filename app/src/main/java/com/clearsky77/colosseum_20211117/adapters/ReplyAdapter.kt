@@ -33,13 +33,20 @@ class ReplyAdapter(
         val txtSelectedSide = row.findViewById<TextView>(R.id.txtSelectedSide)
         val txtReplyContext = row.findViewById<TextView>(R.id.txtReplyContent)
         val txtCreatedAt = row.findViewById<TextView>(R.id.txtCreatedAt)
+        val txtReplyCount = row.findViewById<TextView>(R.id.txtReplyCount)
+        val txtLikeCount = row.findViewById<TextView>(R.id.txtLikeCount)
+        val txtDislikeCount = row.findViewById<TextView>(R.id.txtDislikeCount)
+
 
         txtWriterNickname.text = data.writer.nickname
         txtSelectedSide.text = "(${data.seletedSide.title})"
         txtReplyContext.text = data.content
-
 //        val sdf = SimpleDateFormat("yyyy/MM/dd a h시 m분") // 재가공 도움을 주는 // 이제 필요없다.
         txtCreatedAt.text = data.getFormattedCreateAt()
+
+        txtReplyCount.text = "답글: ${data.replyCount.toString()}개"
+        txtLikeCount.text = "좋아요: ${data.likeCount.toString()}개"
+        txtDislikeCount.text = "싫어요: ${data.dislikeCount.toString()}개"
 
         return row
     }
