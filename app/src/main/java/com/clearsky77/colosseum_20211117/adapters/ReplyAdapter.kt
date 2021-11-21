@@ -58,7 +58,7 @@ class ReplyAdapter(
             ServerUtil.postRequestReplyLikeOrDislike(mContext,data.id, true, object : ServerUtil.JsonResponseHandler{
                 override fun onResponse(jsonObj: JSONObject) {
                     // 토론 상세 현황 화면의 기능 활용.
-//                     => 토론 주제 상세 다시 가져오기. (댓글도 가져오게 됨)
+                    // => 토론 주제 상세 다시 가져오기. (댓글도 가져오게 됨)
                     (mContext as ViewTopicDetailActivity).getTopicDetailFromServer()
                 }
             })
@@ -69,7 +69,7 @@ class ReplyAdapter(
             // 이 댓글에 싫어요를 남겼다고 -> 서버 API 호출.
             ServerUtil.postRequestReplyLikeOrDislike(mContext, data.id, false, object : ServerUtil.JsonResponseHandler{
                 override fun onResponse(jsonObj: JSONObject) {
-
+                    (mContext as ViewTopicDetailActivity).getTopicDetailFromServer()
                 }
 
             })
