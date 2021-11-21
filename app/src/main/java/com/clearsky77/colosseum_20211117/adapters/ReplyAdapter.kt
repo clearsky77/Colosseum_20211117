@@ -48,6 +48,19 @@ class ReplyAdapter(
         txtLikeCount.text = "좋아요: ${data.likeCount.toString()}개"
         txtDislikeCount.text = "싫어요: ${data.dislikeCount.toString()}개"
 
+        // 각 줄의 좋아요 갯수에 이벤트 처리.
+        txtLikeCount.setOnClickListener {
+
+            // 이 댓글에 좋아요를 남겼다고 -> 서버 API 호출.
+
+        }
+
+        txtDislikeCount.setOnClickListener {
+
+            // 이 댓글에 싫어요를 남겼다고 -> 서버 API 호출.
+
+        }
+
         return row
     }
 
