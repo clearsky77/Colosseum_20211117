@@ -87,6 +87,7 @@ class ViewTopicDetailActivity : BaseActivity() {
                 }
 
                 val repliesArr = topicObj.getJSONArray("replies")
+                mReplyList.clear() // 이전 표현한 댓글 리스트는 전부 삭제. 그렇지 않으면, 새로고침 -> 기존 리스트 뒤에 또 리스트가 추가되는 현상 발생.
                 for(i in 0 until repliesArr.length()){
                     val replyObj = repliesArr.getJSONObject(i)
                     val replyData = ReplyData.getReplyDataFromJson( replyObj )
